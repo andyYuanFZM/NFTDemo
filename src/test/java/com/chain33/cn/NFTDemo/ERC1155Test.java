@@ -22,7 +22,7 @@ import cn.chain33.javasdk.utils.TransactionUtil;
 public class ERC1155Test {
 
 	// 平行链所在服务器IP地址
-	String ip = "121.43.111.94";
+	String ip = "127.0.0.1";
 	// 平行链服务端口
 	int port = 8801;
 	RpcClient client = new RpcClient(ip, port);
