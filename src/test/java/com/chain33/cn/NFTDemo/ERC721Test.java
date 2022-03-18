@@ -158,10 +158,10 @@ public class ERC721Test {
 	        
 	        // BTY平均3-5秒一个区块确认， 需要延时去查结果
 	        Thread.sleep(5000);
-			for (int tick = 0; tick < 10; tick++){
+			for (int tick = 0; tick < 20; tick++){
 				txResult = client.queryTransaction(txhash);
 				if(txResult == null) {
-					Thread.sleep(1000);
+					Thread.sleep(3000);
 					continue;
 				}			
 				break;
@@ -198,10 +198,10 @@ public class ERC721Test {
 	        
 	        // BTY平均3-5秒一个区块确认， 需要延时去查结果
 	        Thread.sleep(5000);
-			for (int tick = 0; tick < 10; tick++){
+			for (int tick = 0; tick < 20; tick++){
 				txResult = client.queryTransaction(txhash);
 				if(txResult == null) {
-					Thread.sleep(1000);
+					Thread.sleep(3000);
 					continue;
 				}			
 				break;
@@ -269,10 +269,10 @@ public class ERC721Test {
 	        QueryTransactionResult txResult = new QueryTransactionResult();
 
 			Thread.sleep(5000);
-			for (int tick = 0; tick < 10; tick++){
+			for (int tick = 0; tick < 20; tick++){
 				QueryTransactionResult result = client.queryTransaction(submitTransaction);
 				if(result == null) {
-					Thread.sleep(1000);
+					Thread.sleep(3000);
 					continue;
 				}
 
