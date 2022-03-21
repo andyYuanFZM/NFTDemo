@@ -6,7 +6,9 @@ import java.util.List;
 
 import org.junit.Test;
 
+import cn.chain33.javasdk.client.Account;
 import cn.chain33.javasdk.client.RpcClient;
+import cn.chain33.javasdk.model.AccountInfo;
 import cn.chain33.javasdk.model.rpcresult.AccountAccResult;
 import cn.chain33.javasdk.model.rpcresult.BlockResult;
 
@@ -54,6 +56,19 @@ public class BlockChainTest {
     	BlockResult blockResult = pclient.getLastHeader();
     	System.out.println("当前最大区块高度为： " + blockResult.getHeight());
 	}
+	
+	/**
+	 * 生成用户私钥和地址
+	 */
+	@Test
+	public void createAccount() {
+    	Account account = new Account();
+		AccountInfo accountInfo = account.newAccountLocal();
+		// 生成用户私钥
+		System.out.println(accountInfo.getPrivateKey());
+		// 生成用户地址
+		System.out.println(accountInfo.getAddress());
+    }
 	
 	
 
