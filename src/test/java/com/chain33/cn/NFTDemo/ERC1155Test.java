@@ -32,13 +32,13 @@ public class ERC1155Test {
 
 	// 合约部署人（管理员）地址和私钥,地址下需要有BTY来缴纳手续费
 	// 生成方式参考下面testCreateAccount方法，私钥和地址一一对应
-	String managerAddress = "1AKAm9vV6m4TbTzHKwirdygakF5HNus8Bg";
-    String managerPrivateKey = "65f879c5a5d305b1710c7f46f1d027f4f2bf3c05d09178aa5b057d73b4cc54ca";
+	String managerAddress = "替换成自己的地址，用下面createAccount方法生成";
+    String managerPrivateKey = "替换成自己的私钥，用下面createAccount方法生成";
     
     // 用户手续费代扣地址和私钥,地址下需要有BTY来缴纳手续费
 	// 生成方式参考下面testCreateAccount方法，私钥和地址一一对应
-	String withholdAddress = "1L26eqrBgZanXqosSLrzM9ad77B6KwYZov";
-    String withholdPrivateKey = "720093b1563200b6f30105d13198d262b91f31ae49616c947fe9cb5658bdd0ff";
+	String withholdAddress = "替换成自己的地址，用下面createAccount方法生成";
+    String withholdPrivateKey = "替换成自己的私钥，用下面createAccount方法生成";
     
     // 用户A地址和私钥
 	String useraAddress;
