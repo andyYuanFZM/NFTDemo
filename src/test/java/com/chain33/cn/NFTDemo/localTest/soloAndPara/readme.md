@@ -49,10 +49,8 @@ ParaRemoteGrpcClient="localhost:8802"
 nohup ./chain33 -f chain33.para.toml >> para.out&  
 ```  
 
-8. 检查平行链和主链的同步状态(进程启动后，等待一会后再执行)  
+8. 检查平行链的高度变化(进程启动后，等待一会后再执行)  
 ```  
-# 返回true代表同步完成
-./chain33-cli --rpc_laddr="http://localhost:8901" para is_sync
 # 当前平行链最大区块高度
 ./chain33-cli --rpc_laddr="http://localhost:8901" block last_header
 ```  

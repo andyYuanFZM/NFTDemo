@@ -28,6 +28,9 @@ public class ERC721Test {
 		// 生成方式参考下面testCreateAccount方法，私钥和地址一一对应
 		String managerAddress = "14nh6p7CUNtLXAHEiVkSd5mLUWynzafHBx";
 		String managerPrivateKey = "7dfe80684f7007b2829a28c85be681304f7f4cf6081303dbace925826e2891d1";
+		
+//		String managerAddress = "替换成自己的地址，用下面createAccount方法生成";
+//		String managerPrivateKey = "替换成自己的私钥，用下面createAccount方法生成,注意私钥千万不能泄漏";
 	        		    
 	    // 用户A地址和私钥
 		String useraAddress;
