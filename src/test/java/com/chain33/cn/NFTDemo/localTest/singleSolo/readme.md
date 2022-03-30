@@ -1,5 +1,4 @@
-mintByManater和mintByUser目录下都是在平行链上发行NFT的例子，  
-如果只是想跑一个demo试一下，也可以本文档来本地部署一个solo节点来测试验证。  
+如果只是想快速run一下demo试一下NFT上链流程，最简化的办法是按本文档来本地部署一个solo节点来测试验证。  
 
 solo节点发行NFT的步骤： 
 一. solo节点部署  
@@ -22,6 +21,6 @@ nohup ./chain33 -f chain33.solo.toml >> para.out&
 ```  
 
 二. 运行demo程序  
-运行 EVMTest.java
+运行 ERC721Test.java
 
 

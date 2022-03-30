@@ -1,4 +1,4 @@
-package com.chain33.cn.NFTDemo.mintByUser;
+package com.chain33.cn.NFTDemo.btyPara.mintByUser;
 
 import java.io.IOException;
 import java.util.List;

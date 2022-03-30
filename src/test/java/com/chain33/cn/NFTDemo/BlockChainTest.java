@@ -11,6 +11,7 @@ import cn.chain33.javasdk.client.RpcClient;
 import cn.chain33.javasdk.model.AccountInfo;
 import cn.chain33.javasdk.model.rpcresult.AccountAccResult;
 import cn.chain33.javasdk.model.rpcresult.BlockResult;
+import cn.chain33.javasdk.utils.TransactionUtil;
 
 /**
  * 一些区块链接口的查询
@@ -69,6 +70,18 @@ public class BlockChainTest {
 		// 生成用户地址
 		System.out.println(accountInfo.getAddress());
     }
+	
+	/**
+	 * @description 验证地址的合法性
+	 */
+	@Test
+	public void validateAddress() {
+		String address = "1G1L2M1w1c1gpV6SP8tk8gBPGsJe2RfTks";
+		boolean validAddressResult = TransactionUtil.validAddress(address);
+		System.out.printf("validate result is:%s", validAddressResult);
+	}
+	
+	
 	
 	
 

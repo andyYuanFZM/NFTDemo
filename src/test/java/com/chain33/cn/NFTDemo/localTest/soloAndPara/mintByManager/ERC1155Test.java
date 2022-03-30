@@ -1,4 +1,4 @@
-package com.chain33.cn.NFTDemo.mintByManager;
+package com.chain33.cn.NFTDemo.localTest.soloAndPara.mintByManager;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,7 +22,7 @@ import cn.chain33.javasdk.utils.TransactionUtil;
 public class ERC1155Test {
 
 	// 平行链所在服务器IP地址
-	String ip = "172.22.16.251";
+	String ip = "localhost";
 	// 平行链服务端口
 	int port = 8901;
 	RpcClient client = new RpcClient(ip, port);
