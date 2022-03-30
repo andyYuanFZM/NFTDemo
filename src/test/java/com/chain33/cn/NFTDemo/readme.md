@@ -245,7 +245,7 @@ contract newERC1155 is ERC1155 {
 
 # 5.NFT合约部署调用
 应用和区块链交互流程：
-![Image text](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/NFTDemo/resource/productShow/flow.png)  
+![Image text](https://github.com/andyYuanFZM/NFTDemo/blob/main/src/test/java/com/chain33/cn/NFTDemo/resource/flow.png)  
 1.用户在区块链上注册，应用层调用JAVA-SDK中的创建公私钥方法，生成私钥和区块链地址。 然后将它们在应用层数据库中和用户关联，这样每一个用户都有了一个区块链上的身份。  
 2.NFT合约部署，调用JAVA-SDK构造部署合约的交易并签名该交易上链，一般而言NFT合约的部署是一次性动作（在没有合约逻辑变动，部署好后就固定运行在区块链上）， 建议合约的部署由专门的管理员来操作。管理员私钥和地址，也需要安全的存放在数据库中。  
 3.NFT资产发行，调用JAVA-SDK构造并签名发行NFT的交易，在合约中NFT资产的发行也是限定了只允许管理员才可以操作。  
