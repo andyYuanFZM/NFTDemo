@@ -1,15 +1,15 @@
 mintByManager目录下的NFT合约只支持管理员来发行NFT，在合约的mint方法中，限制了只允许合约的部署人（管理员）才能允许调用。  适用于平台对于NFT发行有严格限制的业务场景。   
 mintByUser此目录下的NFT合约不限制只有管理员才能发行，任何用户都可以调用mint方法发行NFT， 适用于平台任意作者都可以发行NFT的业务场景。   
 
-测试平行链上发行NFT的步骤： 
-1. BTY主链部署
-1.1 准备一台4核8G的linux服器（ ubuntu或Centos都可），硬盘>300G
-1.2 从 https://github.com/bityuan/bityuan/releases 下载最新版本的release运行  
-注意：目前bty主链已经有100多G的数据， 同步时间会比较长，可以在同步过程中先使用官方的对外接口做测试验证， 具体见2.4中的说明  
+测试平行链上发行NFT的步骤：  
+1. BTY主链部署  
+1.1 准备一台4核8G的linux服器（ ubuntu或Centos都可），硬盘>300G  
+1.2 从 https://github.com/bityuan/bityuan/releases 下载最新版本的release运行    
+注意：目前bty主链已经有100多G的数据， 同步时间会比较长，可以在同步过程中先使用官方的对外接口做测试验证， 具体见2.4中的说明   
 
 2. 平行链部署  
-2.1  准备一台2核4G的linux服务器（ ubuntu或Centos都可，且这是最低配置，只能用于测试验证）
-2.2  下载，解压压缩包，并进入目录
+2.1  准备一台2核4G的linux服务器（ ubuntu或Centos都可，且这是最低配置，只能用于测试验证）  
+2.2  下载，解压压缩包，并进入目录  
 ```  
 wget https://bty33.oss-cn-shanghai.aliyuncs.com/chain33Dev/parachain/linux/chain33_para_linux_0670237.tar.gz  
 tar -zxvf chain33_para_linux_0670237.tar.gz  
