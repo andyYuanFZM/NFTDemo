@@ -22,7 +22,7 @@ contract newERC1155 is ERC1155 {
         require(ids.length == amounts.length, "The ids and amounts are not match");
         require(ids.length == uris.length, "The ids and uris are not match");
         _mintBatch(_to, ids, amounts, "");
-        if (uris.length > 1) {
+        if (uris.length > 0) {
             for (uint256 i = 0; i < ids.length; i++) {
                 _setURI(ids[i], uris[i]);
             }
