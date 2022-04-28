@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: SimPL-2.0
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.1;
 import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/ERC1155.sol";
 
 contract newERC1155 is ERC1155 {

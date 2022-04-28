@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: SimPL-2.0
-pragma solidity ^0.8.0;
-import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/ERC1155.sol";
+pragma solidity ^0.8.1;
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/ERC1155.sol";
 
 contract newERC1155 is ERC1155 {
 
     address public _owner;
     mapping(uint256 => string) private _tokenURI;
     
-    constructor() public  ERC1155("") {
+    constructor() ERC1155("") {
         _owner = msg.sender;
     }
     
@@ -28,7 +28,6 @@ contract newERC1155 is ERC1155 {
                 _setURI(ids[i], uris[i]);
             }
         }
-        
     }
 
     /**

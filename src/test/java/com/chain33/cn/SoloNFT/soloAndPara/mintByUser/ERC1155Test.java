@@ -1,4 +1,4 @@
-package com.chain33.cn.NFTDemo.localTest.soloAndPara.mintByUser;
+package com.chain33.cn.SoloNFT.soloAndPara.mintByUser;
 
 import java.io.IOException;
 import java.util.List;

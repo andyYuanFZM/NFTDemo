@@ -1,4 +1,4 @@
-package com.chain33.cn.NFTDemo;
+package com.chain33.cn;
 
 import java.io.IOException;
 import java.util.ArrayList;
