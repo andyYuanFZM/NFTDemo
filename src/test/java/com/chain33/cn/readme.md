@@ -31,12 +31,13 @@
 
 ## 3. 区块链环境搭建  
 根据需求部署所需的区块链环境：  
-1. 搭建BTY平行链环境：   
-[[BTY平行链环境]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/NFTDemo/readme.md) 
-2. 搭建Solo单节点开发环境： 
+1. 搭建BTY平行链环境：    
+[[BTY平行链环境]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/NFTDemo/readme.md)   
+2. 搭建Solo单节点开发环境：  
 [[Solo单节点]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/SoloNFT/singleSolo/readme.md)  
 [[Solo单节点+平行链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/SoloNFT/soloAndPara/readme.md)   
-3. 搭建联盟链环境：
+3. 搭建联盟链环境：  
+[[联盟链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/ConsortiumNFT/readme.md) 
 
 ## 4. 搭建JAVA-SDK开发环境  
 参考： [[搭建JAVA-SDK开发环境]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/JAVA-SDK开发环境.md) 
