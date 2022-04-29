@@ -159,23 +159,30 @@ public AccountInfo newAccountLocal()
 public long queryEVMGas(String execer, String tx, String address)
 ```  
 
-### 5.2.3 部署EVM合约
+### 3 部署EVM合约
 调用createEvmContract往区块链上部署EVM合约
 ```
 // 函数原型
 public static String createEvmContract(byte[] code, String note, String alias, String privateKey, String paraName)
 ```  
 
-### 5.2.4 调用EVM合约中方法
+### 4 调用EVM合约中方法
 通过callEvmContract调用EVM合约方法
 ```
 // 函数原型
 public static String callEvmContract(byte[] parameter, String note, long amount, String contractAddr, String privateKey, String paraName)
 ```  
 
-### 5.2.5 合约查询功能
+### 5 合约查询功能
 通过callEVMAbi方法，调用EVM合约中的查询方法
 ```
 // 函数原型
 public JSONObject callEVMAbi(String address, String abiPack)
 ```  
+
+### 6 其它区块链接口
+BlockChainTest.java中包含了一些链上常用的方法，可以参考：    
+&nbsp; 4.1 getBalance -- 取用户地址在主链上的燃料值  
+&nbsp; 4.2 getLastHeight -- 取平行链目前最大区块高度（注意要连平行链，如果连到主链的rpc端口，取下来的值就是主链的高度了）   
+&nbsp; 4.3 createAccount -- 创建区块链私钥和地址方法
+&nbsp; 4.4 validateAddress -- 校验区块链地址是否合法（区块链地址不能简单通过长度判断是否合法，需要满足base58编码形式） 

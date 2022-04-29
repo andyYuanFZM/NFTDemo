@@ -25,21 +25,17 @@
 | 7   | 代扣手续费| 将代扣交易和正常用户的交易打包进一个交易组中，代扣交易使用代扣地址签名，用于链上手续费扣除。|
 
 ## 2. 文档目录介绍
-1. ConsortumNFT: 4节点联盟链的搭建，以及如何在联盟链上部署运行NFT合约，  适用于联盟链业务场景。
-2. NFTDemo目录： 在bty平行链上运行demo的方法，包含如何部署bty公链下的平行链，平行链如何连接主链，如何运行demo程序 ，适用于公链业务场景。  
-3. localTest目录：用于本地快速验证调试，可在自己的window或linux机器上部署测试区块链。  
-4. BlockChainTest.java中包含了一些链上的查询方法，如果项目中有用到，可以参考：    
-&nbsp; 4.1 getBalance -- 取用户地址在主链上的燃料值  
-&nbsp; 4.2 getLastHeight -- 取平行链目前最大区块高度（注意要连平行链，如果连到主链的rpc端口，取下来的值就是主链的高度了）   
-&nbsp; 4.3 validateAddress -- 校验区块链地址是否合法（区块链地址不能简单通过长度判断是否合法，需要满足base58编码形式） 
+1. NFTDemo目录： BTY平行链的场景，该子目录下包含BTY平行链环境搭建，平行链上合约部署和运行的JAVA样例。
+2. ConsortumNFT目录: 联盟链的场景，该子目录下包含4节点联盟链的搭建， 联盟链上合约部署和运行的JAVA样例。
+3. SoloNFT目录：单节点验证场景，用于本地快速验证调试，该子目录下包含SOLO节点的环境搭建，以下合约部署和调用样例。  
 
 ## 3. 区块链环境搭建  
 根据需求部署所需的区块链环境：  
 1. 搭建BTY平行链环境：   
 [[BTY平行链环境]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/NFTDemo/readme.md) 
 2. 搭建Solo单节点开发环境： 
-[[Solo单节点]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/SoloNFT/singleSolo/readme.md)
-[[Solo单节点+平行链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/SoloNFT/soloAndPara/readme.md) 
+[[Solo单节点]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/SoloNFT/singleSolo/readme.md)  
+[[Solo单节点+平行链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/SoloNFT/soloAndPara/readme.md)   
 3. 搭建联盟链环境：
 
 ## 4. 搭建JAVA-SDK开发环境  
