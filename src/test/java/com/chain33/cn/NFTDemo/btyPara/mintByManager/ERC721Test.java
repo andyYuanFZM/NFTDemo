@@ -68,9 +68,6 @@ public class ERC721Test {
 	    @Test
 	    public void testERC721() throws Exception {
 	    	
-	        // 手续费，可以固定设置一个较大的值，保证交易能成功，此处设置0.01个BTY
-	        long fee = 1000000;
-	    	
 	    	// =======> 为用户A和B生成私钥和地址
 	    	AccountInfo infoA = createAccount();
 	    	useraAddress = infoA.getAddress();
@@ -93,7 +90,7 @@ public class ERC721Test {
 	        int tokenId = 10000;
 	        byte[] initNFT = EvmUtil.encodeParameter(abi, "mint", useraAddress, tokenId, "http://www.163.com");
 
-	        hash = callContract(initNFT, contractAddress, managerAddress, managerPrivateKey, paraName, fee);
+	        hash = callContract(initNFT, contractAddress, managerAddress, managerPrivateKey, paraName);
 	        
 	        // =======>  查询用户A地址下的余额
 	        byte[] packAbiGet = EvmUtil.encodeParameter(abi, "balanceOf", useraAddress);
@@ -149,7 +146,7 @@ public class ERC721Test {
 	        byte[] evmWithCode = EvmUtil.encodeContructor(abi, "NFT name", "ART");  
             byte[] code = ByteUtil.merge(HexUtil.fromHexString(codes), evmWithCode);
 	        	        
-	    	// TODO: 估算合约GAS费， 实际应用过程中，不建议在业务代码中直接调用gas费， 只是做预估使用。  实际可以在代码里设置一个大于这个值的数
+	    	// 估算合约GAS费
 	        String evmCode = EvmUtil.getCreateEvmEncode(code, "", "deploy ERC721 contract", execer);
 	        long gas = client.queryEVMGas("evm", evmCode, address);
 	        System.out.println("Gas fee is:" + gas);
@@ -189,14 +186,20 @@ public class ERC721Test {
 	     * @throws IOException 
 	     * @throws InterruptedException 
 	     */
-	    private String callContract(byte[] code, String contractAddr, String address, String privateKey, String execer, long gas) throws Exception {
+	    private String callContract(byte[] code, String contractAddr, String address, String privateKey, String execer) throws Exception {
 	    	
 	        // 调用合约
 	        String txEncode;
 	        String txhash = "";
 	        QueryTransactionResult txResult = new QueryTransactionResult();
-	    	
-	    	txEncode = EvmUtil.callEvmContract(code,"", 0, contractAddr, privateKey, execer, gas);
+	        
+	    	// 估算部署合约GAS费
+	        String evmCode = EvmUtil.getCallEvmEncode(code, "", 0, contractAddr, execer);
+	        long gas = client.queryEVMGas("evm", evmCode, address);
+	        System.out.println("Gas fee is:" + gas);
+	        long fee = gas + 100000;
+	        
+	    	txEncode = EvmUtil.callEvmContract(code,"", 0, contractAddr, privateKey, execer, fee);
 	        txhash = client.submitTransaction(txEncode);
 	        System.out.println("调用合约hash = " + txhash);
 	        
@@ -247,7 +250,7 @@ public class ERC721Test {
 	        JSONObject query = client.callEVMAbi(contractAddress, HexUtil.toHexString(queryAbi));
 	        JSONObject output = query.getJSONObject("result");
 	        String rawData = output.getString("rawData");
-	        System.out.println(title + ": " + HexUtil.hexStringToString(HexUtil.removeHexHeader(rawData)));
+	        System.out.println(title + ": " + HexUtil.hexStringToString(HexUtil.removeHexHeader(rawData)).replaceAll("\u0000",""));
 	    }
 	    
 	    

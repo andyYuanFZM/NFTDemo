@@ -148,7 +148,7 @@ public class ERC721Test {
 	        byte[] evmWithCode = EvmUtil.encodeContructor(abi, "NFT name", "ART");  
             byte[] code = ByteUtil.merge(HexUtil.fromHexString(codes), evmWithCode);
 	        	        
-	    	// TODO: 估算合约GAS费， 实际应用过程中，不建议在业务代码中直接调用gas费， 只是做预估使用。  实际可以在代码里设置一个大于这个值的数
+	    	// 估算合约GAS费
 	        String evmCode = EvmUtil.getCreateEvmEncode(code, "", "deploy ERC721 contract", execer);
 	        long gas = client.queryEVMGas("evm", evmCode, address);
 	        System.out.println("Gas fee is:" + gas);
@@ -206,7 +206,7 @@ public class ERC721Test {
 	        JSONObject query = client.callEVMAbi(contractAddress, HexUtil.toHexString(queryAbi));
 	        JSONObject output = query.getJSONObject("result");
 	        String rawData = output.getString("rawData");
-	        System.out.println(title + ": " + HexUtil.hexStringToString(HexUtil.removeHexHeader(rawData)));
+	        System.out.println(title + ": " + HexUtil.hexStringToString(HexUtil.removeHexHeader(rawData)).replaceAll("\u0000",""));
 	    }
 	    
 	    

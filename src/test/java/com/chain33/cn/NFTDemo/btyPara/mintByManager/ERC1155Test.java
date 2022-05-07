@@ -84,11 +84,8 @@ public class ERC1155Test {
         System.out.println("部署好的合约地址 = " + contractAddress);
         
         // =======>  step3: 调用合约发行NFT,假设为2件游戏道具各生成100个NFT资产, id从10000开始
-        
-        // 调用合约的手续费，可以固定设置一个较大的值，保证交易能成功，此处设置0.01个BTY
-        long fee = 1000000;
-        
-        int lenght = 2;
+                
+        int lenght = 100;
         // tokenId数组
         int[] ids = new int[lenght];
         // 同一个tokenid发行多少份
@@ -104,7 +101,7 @@ public class ERC1155Test {
         // 构造合约调用, mint对应solidity合约里的方法名， useraAddress, ids, amounts这三项对应合约里的参数。  将NFT发行在用户A地址下
         byte[] initNFT = EvmUtil.encodeParameter(abi, "mint", useraAddress, ids, amounts, uris);
 
-        hash = callContract(initNFT, contractAddress, managerAddress, managerPrivateKey, paraName, fee);
+        hash = callContract(initNFT, contractAddress, managerAddress, managerPrivateKey, paraName);
         
         // =======>  查询用户A地址下的余额
         byte[] packAbiGet = EvmUtil.encodeParameter(abi, "balanceOf", useraAddress, ids[0]);
@@ -167,7 +164,7 @@ public class ERC1155Test {
         
         byte[] code = ByteUtil.merge(HexUtil.fromHexString(codes), abi.getBytes());
         
-    	// TODO: 估算部署合约GAS费， 实际应用过程中，不建议在业务代码中直接调用gas费， 只是做预估使用。  实际可以在代码里设置一个大于这个值的数（合约部署手续费一般都高于合约调用，所以这边单独估算）
+    	// 估算部署合约GAS费
         String evmCode = EvmUtil.getCreateEvmEncode(code, "", "deploy ERC1155 contract", execer);
         long gas = client.queryEVMGas("evm", evmCode, address);
         System.out.println("Gas fee is:" + gas);
@@ -207,18 +204,21 @@ public class ERC1155Test {
      * @throws IOException 
      * @throws InterruptedException 
      */
-    private String callContract(byte[] code, String contractAddr, String address, String privateKey, String execer, long gas) throws Exception {
+    private String callContract(byte[] code, String contractAddr, String address, String privateKey, String execer) throws Exception {
     	
         // 调用合约
         String txEncode;
         String txhash = "";
         QueryTransactionResult txResult = new QueryTransactionResult();
         
-   	
-    	txEncode = EvmUtil.callEvmContract(code,"", 0, contractAddr, privateKey, execer, gas);
-    	
-        gas = client.queryEVMGas("evm", txEncode, address);
+        // 估算合约执行GAS费
+        String evmCode = EvmUtil.getCallEvmEncode(code, "", 0, contractAddr, execer);
+        long gas = client.queryEVMGas("evm", evmCode, address);
         System.out.println("Gas fee is:" + gas);
+        
+        long fee = gas + 100000;
+    	txEncode = EvmUtil.callEvmContract(code,"", 0, contractAddr, privateKey, execer, fee);
+    	
         txhash = client.submitTransaction(txEncode);
         System.out.println("调用合约hash = " + txhash);
         
