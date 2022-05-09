@@ -1,4 +1,4 @@
-package com.chain33.cn.SoloNFT.singleSolo;
+package com.chain33.cn.ConsortiumNFT;
 
 import java.io.IOException;
 
