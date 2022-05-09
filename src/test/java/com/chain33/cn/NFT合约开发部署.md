@@ -153,7 +153,7 @@ public AccountInfo newAccountLocal()
 ```  
 
 ### 2. 预估GAS费
-调用queryEVMGas，估算gas费用。但这一步会产生耗时，所以在实际应用过程中，不建议在业务代码中每一次数据上链都调用这个接口，可以先通过此方法预估不同类型交易的gas费（mint交易，transfer交易等），然后再在这个值的基础上再加上0.001后，设置成手续费。
+调用queryEVMGas，估算gas费用。
 ```
 // 函数原型
 public long queryEVMGas(String execer, String tx, String address)
