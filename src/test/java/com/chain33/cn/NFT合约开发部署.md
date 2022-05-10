@@ -184,8 +184,8 @@ public JSONObject callEVMAbi(String address, String abiPack)
 BlockChainTest.java中包含了一些链上常用的方法，可以参考：    
 &nbsp; 6.1 getBalance -- 取用户地址在主链上的燃料值  
 &nbsp; 6.2 getLastHeight -- 取平行链目前最大区块高度（注意要连平行链，如果连到主链的rpc端口，取下来的值就是主链的高度了）   
-&nbsp; 6.3 createAccount -- 创建区块链私钥和地址方法
-&nbsp; 6.4 validateAddress -- 校验区块链地址是否合法（区块链地址不能简单通过长度判断是否合法，需要满足base58编码形式） 
-&nbsp; 6.5 getBlockByHeight -- 根据区块高度区间获取区块详情信息
-&nbsp; 6.6 getBlockHashByHeight -- 根据区块高度获取当前区块的hash值 
-&nbsp; 6.7 getBlockByHash -- 根据区块hash获取区块头详情信息（此接口只查区块头，不含交易详情信息）
+&nbsp; 6.3 createAccount -- 创建区块链私钥和地址方法  
+&nbsp; 6.4 validateAddress -- 校验区块链地址是否合法（区块链地址不能简单通过长度判断是否合法，需要满足base58编码形式）   
+&nbsp; 6.5 getBlockByHeight -- 根据区块高度区间获取区块详情信息   
+&nbsp; 6.6 getBlockHashByHeight -- 根据区块高度获取当前区块的hash值   
+&nbsp; 6.7 getBlockByHash -- 根据区块hash获取区块头详情信息（此接口只查区块头，不含交易详情信息）  
