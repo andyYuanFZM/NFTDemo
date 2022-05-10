@@ -51,7 +51,7 @@ nohup ./bityuan-linux-amd64 -f bityuan.toml >> bty.out&
 ./bityuan-cli-linux-amd64 account dump_key -a 空投地址
 # 将BTY从空投地址转到另外地址下（分三步，构造交易，签名，发送）
 ./bityuan-cli-linux-amd64  coins transfer -a 100 -n test -t  用户另外的地址
-./bityuan-cli-linux-amd64  wallet sign -k 空投地址的私钥匙 -d 上一步返回的数据
+./bityuan-cli-linux-amd64  wallet sign -k 空投地址的私钥 -d 上一步返回的数据
 ./bityuan-cli-linux-amd64  wallet send -d 上一步返回的数据
 # 查看转账交易的执行结果
 通过区块链浏览器，输入地址或上一步返回的转账交易hash值，去浏览器上查询   
