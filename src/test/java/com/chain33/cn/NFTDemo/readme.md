@@ -101,7 +101,7 @@ nohup ./chain33 -f chain33.para.toml >> para.out&
 备注：如果主链或平行链部署过程中遇到问题，可联系官方客服确认。  
 
 二. 运行demo程序
-1. 调用 BlockChainTest.java中的createAccount方法，生成两对地址和私钥
+1. 调用 BlockChainTest.java中的createAccount方法，生成一对地址和私钥
 2. 修改ERC1155Test和ERC721Test两个文件，将上一步生成的内容，分别填充到以下几个参数中，注意私钥即资产，要隐私存放，而地址是可以公开的
 ```  
 // 管理员地址和私钥
