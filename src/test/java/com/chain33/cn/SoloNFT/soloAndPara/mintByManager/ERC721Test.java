@@ -247,7 +247,7 @@ public class ERC721Test {
 	        JSONObject query = client.callEVMAbi(contractAddress, HexUtil.toHexString(queryAbi));
 	        JSONObject output = query.getJSONObject("result");
 	        String rawData = output.getString("rawData");
-	        System.out.println(title + ": " + HexUtil.hexStringToString(HexUtil.removeHexHeader(rawData)));
+	        System.out.println(title + ": " + HexUtil.hexStringToString(HexUtil.removeHexHeader(rawData)).replaceAll("\u0000",""));
 	    }
 	    
 	    
