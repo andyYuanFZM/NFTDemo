@@ -19,7 +19,7 @@ import cn.chain33.javasdk.utils.TransactionUtil;
 public class ERC721Test {
 
     	// 平行链所在服务器IP地址
-		String ip = "localhost";
+		String ip = "172.22.16.251";
 		// 平行链服务端口
 		int port = 8801;
 		RpcClient client = new RpcClient(ip, port);

@@ -1,4 +1,4 @@
-package com.chain33.cn.NFTDemo.btyPara.deployByUser;
+package com.chain33.cn.BTYNFT.btyPara.deployByUser;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,9 +22,9 @@ import cn.chain33.javasdk.utils.TransactionUtil;
 public class ERC1155Test {
 
 	// 平行链所在服务器IP地址
-	String ip = "localhost";
+	String ip = "172.22.16.179";
 	// 平行链服务端口
-	int port = 8901;
+	int port = 8921;
 	RpcClient client = new RpcClient(ip, port);
 	
     // 平行链名称，固定格式user.p.xxxx.样例中使用的名称叫mbaas， 根据自己平行链名称变化。  这个名称一定要和平行链配置文件中的名称完全一致。
@@ -32,8 +32,8 @@ public class ERC1155Test {
     
     // 用户手续费代扣地址和私钥,地址下需要有BTY来缴纳手续费
 	// 生成方式参考下面testCreateAccount方法，私钥和地址一一对应
-	String withholdAddress = "17RH6oiMbUjat3AAyQeifNiACPFefvz3Au";
-    String withholdPrivateKey = "56d1272fcf806c3c5105f3536e39c8b33f88cb8971011dfe5886159201884763";
+	String withholdAddress = "17c5dLVrpdDTzrTxz9yEgv2hrBaKjF3mDi";
+    String withholdPrivateKey = "0x862f8f9f20fa81e6f118918898c09be70ed5d4ae8c5b68cb564499c438a9632d";
 //	String withholdAddress = "替换成自己的地址，用下面createAccount方法生成";
 //    String withholdPrivateKey = "替换成自己的私钥，用下面createAccount方法生成,注意私钥千万不能泄漏";
     

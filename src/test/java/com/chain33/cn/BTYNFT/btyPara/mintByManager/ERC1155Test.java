@@ -1,4 +1,4 @@
-package com.chain33.cn.NFTDemo.btyPara.mintByManager;
+package com.chain33.cn.BTYNFT.btyPara.mintByManager;
 
 import java.io.IOException;
 import java.util.List;
