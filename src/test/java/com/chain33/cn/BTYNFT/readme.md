@@ -153,17 +153,7 @@ int port = 8901;
 // 改成一.4中自己设置的平行链名称
 String paraName = "user.p.mbaas.";
 ```   
-6. 运行测试程序
-
-7. 其它区块链接口参考
-[[区块链接口参考]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/BlockChainTest.java)  
- - 查询主链燃料费  
- - 获取当前链的最大高度  
- - 根据区块高度区间获取区块详情信息  
- - 根据区块高度获取当前区块的hash值  
- - 根据区块hash获取区块头详情信息  
- - 生成用户私钥和地址  
- - 验证地址的合法性  
+6. 运行测试程序  
 
 ## 5. 应用对接注意事项   
 交易上链失败有两大类情况：  
