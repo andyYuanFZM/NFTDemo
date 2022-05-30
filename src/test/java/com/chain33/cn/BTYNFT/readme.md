@@ -1,12 +1,13 @@
+# BTY环境及使用说明  
 mintByManager目录下的NFT合约只支持管理员来发行NFT，在合约的mint方法中，限制了只允许合约的部署人（管理员）才能允许调用。  适用于平台对于NFT发行有严格限制的业务场景。   
 mintByUser此目录下的NFT合约不限制只有管理员才能发行，任何用户都可以调用mint方法发行NFT， 适用于平台任意作者都可以发行NFT的业务场景。   
 deployByUser此目录下的用例支持任意用户部署NFT合约，适用于平台支持每一个艺术家都可以部署自己的智能合约。
 
-一. 环境部署：  
+## 1. 环境部署：  
 支持在同一台服务器上同时部署BTY主链节点和BTY平行链节点（只要保证两者的jsonrpc和grpc端口不冲突即可）  
-1. BTY主链部署  
-- 1.1 准备一台4核8G的linux服器（ ubuntu或Centos都可），硬盘>300G （同步速度SSD硬盘效率要远远高于机械盘，根据自己情况选择硬盘类型）  
-- 1.2 从 https://github.com/bityuan/bityuan/releases 下载最新版本的release运行(比如以当前最新版本6.7.2来说明)        
+### 1.1 BTY主链部署  
+- 1.1.1 准备一台4核8G的linux服器（ ubuntu或Centos都可），硬盘>300G （同步速度SSD硬盘效率要远远高于机械盘，根据自己情况选择硬盘类型）  
+- 1.1.2 从 https://github.com/bityuan/bityuan/releases 下载最新版本的release运行(比如以当前最新版本6.8.0来说明)        
 ```  
 # 下载
 wget https://github.com/bityuan/bityuan/releases/download/v6.8.0/bityuan-linux-amd64.tar.gz
@@ -15,7 +16,7 @@ mkdir bityuan
 # 解压
 tar -zxvf bityuan-linux-amd64.tar.gz -C bityuan
 ```  
-- 1.3 目录下包含以下几个文件  
+- 1.1.3 目录下包含以下几个文件  
 ```  
 bityuan-linux-amd64                -- BTY节点程序
 bityuan-cli-linux-amd64            -- BTY节点命令行工具
@@ -23,7 +24,7 @@ bityuan.toml                       -- bityuan配置文件（带数据分片功�
 bityuan-fullnode.toml              -- bityuan配置文件（全节点模式，占空间大）
 ```  
 
-- 1.4 修改配置  
+- 1.1.4 修改配置  
 ```  
 [blockchain]
  # 默认是false, 需要改成true， 此参数含义是主链给平行链同步区块sequence信息，如果不开启，平行链无法同步  
@@ -37,18 +38,18 @@ grpcBindAddr="localhost:8802"
 whitelist=["127.0.0.1"] 
 ```  
 
-- 1.5 启动主链程序
+- 1.1.5 启动主链程序
 ```  
 nohup ./bityuan-linux-amd64 -f bityuan.toml >> bty.out&
 ```  
 
-- 1.6 检查主链的同步状态(进程启动后，等待一会后执行) 
+- 1.1.6 检查主链的同步状态(进程启动后，等待一会后执行) 
 ```  
 #  主要看返回信息中自己节点的height信息， 和主链最大高度一致代表同步成功。  这一过程时间比较长，按目前2000万左右的区块高度， SSD硬盘同步需要三天左右时间， 普通机械硬盘耗时可能翻倍
  ./bityuan-cli-linux-amd64 net peer info  
 ```   
 
-- 1.7 创建钱包，接收空投 (这一步可以在主链节点还没有同步完情况下执行)   
+- 1.1.7 创建钱包，接收空投 (这一步可以在主链节点还没有同步完情况下执行)   
 每一笔交易上链，都需要支付BTY作为手续费， 前期测试交易量比较少的情况下，可以用空投的BTY来充当手续费
 ```  
 # 生成助记词，以下命令执行完返回的一串英文字符串就是助记词  
@@ -61,7 +62,7 @@ nohup ./bityuan-linux-amd64 -f bityuan.toml >> bty.out&
 ./bityuan-cli-linux-amd64 account list
 ```  
 
-- 1.7 转移空投地址下的BTY到另外的地址(只有在主链节点同步完后，才能看到空投资产，所以这一步要在同步完后再执行,同步过程中执行会报一个：ErrNotSync的错)   
+- 1.1.8 转移空投地址下的BTY到另外的地址(只有在主链节点同步完后，才能看到空投资产，所以这一步要在同步完后再执行,同步过程中执行会报一个：ErrNotSync的错)   
 ```  
 # 查看空投地址的私钥
 ./bityuan-cli-linux-amd64 account dump_key -a 空投地址
@@ -74,23 +75,23 @@ nohup ./bityuan-linux-amd64 -f bityuan.toml >> bty.out&
 浏览器地址： https://mainnet.bityuan.com/home
 ```   
  
-2. 平行链部署 （在主链部署完成后进行）  
+### 1.2 平行链部署 （在主链部署完成后进行）  
 因为目前bty主链已经有100多G的数据， 同步时间会比较长，所以为了方便开发者验证，可以在主链同步过程中临时使用官方的对外接口做测试验证， 具体见2.3中的说明 。  
-- 2.1  下载，解压压缩包，并进入目录  
+- 1.2.1  下载，解压压缩包，并进入目录  
 ```  
 wget https://bty33.oss-cn-shanghai.aliyuncs.com/chain33Dev/parachain/linux/chain33_para_linux_0670237.tar.gz  
 tar -zxvf chain33_para_linux_0670237.tar.gz  
 cd chain33_para_linux_0670237  
 ```  
 
-- 2.2 目录下包含以下三个文件  
+- 1.2.2 目录下包含以下三个文件  
 ```  
 chain33                -- chain33节点程序
 chain33-cli            -- chain33节点命令行工具
 chain33.para.toml      -- chain33平行链配置文件
 ```  
 
-- 2.3 修改配置文件（chain33.para.toml），修改以下几个配置项：  
+- 1.2.3 修改配置文件（chain33.para.toml），修改以下几个配置项：  
 ```  
  #平行链名称，用来唯一标识一条平行链，  可将mbaas修改成自己想要的名称（只支持英文字符），最后一个 . 号不能省略
 Title="user.p.mbaas."
@@ -101,12 +102,12 @@ ParaRemoteGrpcClient="localhost:8802"
 startHeight=1  ==> 改成 startHeight=19390000
 ```  
 
-- 2.4 启动平行链
+- 1.2.4 启动平行链
 ```  
 nohup ./chain33 -f chain33.para.toml >> para.out&  
 ```  
 
-- 2.5 检查平行链和主链的同步状态(进程启动后，等待一会后再执行)  
+- 1.2.5 检查平行链和主链的同步状态(进程启动后，等待一会后再执行)  
 ```
  #返回true代表同步完成
 ./chain33-cli --rpc_laddr="http://localhost:8901" para is_sync
@@ -116,7 +117,18 @@ nohup ./chain33 -f chain33.para.toml >> para.out&
 
 备注：如果主链或平行链部署过程中遇到问题，可联系官方客服确认。  
 
-二. 运行demo程序
+## 2. 熟悉了解NFT合约开发部署  
+参考： [[NFT合约开发部署]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/NFT合约开发部署.md)  
+
+## 3. 通过JAVA-SDK进行数据上链     
+[[JAVA-SDK环境部署]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/JAVA-SDK开发环境.md)  
+
+其它SDK或接口方式：  
+[[GO-SDK]](https://github.com/33cn/chain33-sdk-go)   
+[[JSON-RPC: TODO 待补充]]()   
+[[Web3: TODO 待补充]]()   
+
+## 4. 运行demo程序  
 1. 调用 BlockChainTest.java中的createAccount方法，生成一对地址和私钥
 2. 修改ERC1155Test和ERC721Test两个文件，将上一步生成的内容，分别填充到以下几个参数中，注意私钥即资产，要隐私存放，而地址是可以公开的
 ```  
@@ -143,7 +155,17 @@ String paraName = "user.p.mbaas.";
 ```   
 6. 运行测试程序
 
-三. 应用对接注意事项   
+7. 其它区块链接口参考
+[[区块链接口参考]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/BlockChainTest.java)  
+ - 查询主链燃料费  
+ - 获取当前链的最大高度  
+ - 根据区块高度区间获取区块详情信息  
+ - 根据区块高度获取当前区块的hash值  
+ - 根据区块hash获取区块头详情信息  
+ - 生成用户私钥和地址  
+ - 验证地址的合法性  
+
+## 5. 应用对接注意事项   
 交易上链失败有两大类情况：  
 1. 交易上链了，但交易执行失败（有返回交易hash）：   这类交易通过了mempool（交易缓存池）的合法性检查，但是在合约执行过程中失败了（ 比如转移了错误数量的NFT）。
 2. 交易没有上链（没有返回交易hash，rpc接口直接返回出错信息）： 这类交易在mempool的合法性检查中没有通过，包括以下以类错误：  

@@ -1,13 +1,49 @@
 # chain33联盟链部署
 ## chain33联盟链采用了QBFT共识机制，支持拜占庭容错，节点数要满足N>3f，所以至少3f+1个节点
 
-一. 联盟链环境部署  
-[[联盟链环境部署]](https://chain.33.cn/document/274)    
+## 1.联盟链环境部署  
+[[联盟链环境部署]](https://chain.33.cn/document/274)   
 
-二. 运行demo程序  
-运行目录下 ERC721Test.java
+## 2. 熟悉了解NFT合约开发部署  
+参考： [[NFT合约开发部署]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/NFT合约开发部署.md)  
 
-三. 应用对接注意事项   
+## 3. 通过JAVA-SDK进行数据上链     
+[[JAVA-SDK环境部署]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/JAVA-SDK开发环境.md)  
+
+其它SDK或接口方式：  
+[[GO-SDK]](https://github.com/33cn/chain33-sdk-go)   
+[[JSON-RPC: TODO 待补充]]()   
+[[Web3: TODO 待补充]]()   
+
+## 4. 运行demo程序  
+1. 调用 BlockChainTest.java中的createAccount方法，生成一对地址和私钥
+2. 修改本目录下的ERC721Test文件，将上一步生成的内容，分别填充到以下几个参数中，注意私钥即资产，要隐私存放，而地址是可以公开的
+```  
+// 管理员地址和私钥
+String managerAddress = "";
+String managerPrivateKey = "";
+```   
+3. 修改ERC721Test两个文件中以下两个参数
+```  
+// 改成自己节点所在服务器IP地址
+String ip = "";
+// 改成自己联盟链服务端口，对应的是配置文件里的jrpcBindAddr配置项，默认的是8801。 注意：如果远程访问，防火墙要放行此端口
+int port = 8801;
+```   
+4. 运行测试程序
+
+5. 其它区块链接口参考
+[[区块链接口参考]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/BlockChainTest.java)  
+ - 查询主链燃料费  
+ - 获取当前链的最大高度  
+ - 根据区块高度区间获取区块详情信息  
+ - 根据区块高度获取当前区块的hash值  
+ - 根据区块hash获取区块头详情信息  
+ - 生成用户私钥和地址  
+ - 验证地址的合法性   
+
+
+## 5. 应用对接注意事项   
 交易上链失败有两大类情况：  
 1. 交易上链了，但交易执行失败（有返回交易hash）：   这类交易通过了mempool（交易缓存池）的合法性检查，但是在合约执行过程中失败了（ 比如转移了错误数量的NFT）。
 2. 交易没有上链（没有返回交易hash，rpc接口直接返回出错信息）： 这类交易在mempool的合法性检查中没有通过，包括以下以类错误：  

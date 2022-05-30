@@ -7,11 +7,15 @@
 | V1.0   | 1. 通过 JAVA-SDK 在 BTY 平行链上发行 NFT<br>2. BTY平行链部署<br>3.本地solo测试环境部署 | 2022/03/09 |
 | V1.0   | 1. 增加联盟链环境部署，以及通过JAVA-SDK在联盟链部署发行NFT | 2022/04/28 |
 | V1.0   | 1. 增加通过代扣的方式来部署合约方法<br>2. 更新java-sdk到1.0.6 | 2022/05/16 |
+| V1.0   | 1. 增加YCC链的部署及使用说明 | 2022/05/30 |
 
 ## 1. 前言
 ### 1.1 目的
-本文档指导用户如何部署Chain33单节点开发环境（SOLO共识）， Chain33联盟链（QBFT共识），Chain33平行链（BTY公链下的平行链），以及如何这三种环境下部署
-并运行NFT智能合约（ERC1155和ERC721）
+本文档指导用户如何基于Chain33区块链开发框架部署各种类型的区块链环境，以及如何在这些环境上测试开发NFT合约
+ 1. 单节点开发环境（SOLO共识）  
+ 2. Chain33联盟链（QBFT共识）  
+ 3. BTY公链节点和平行链（SPOS共识）  
+ 4. YCC公链节点和平行链（POS共识）  
 
 ### 1.2 术语与缩略语
 
@@ -24,30 +28,18 @@
 | 5   | ERC721| 服务于非同质化代币（NFT）, 每个Token都是不一样的，都有自己的唯一性和独特价值,不可分割，可追踪。|
 | 6   | ERC1155| 也是服务于非同质化代币(NFT),相比于ERC721它同时还支持在一个合约中存储多个数字资产，支持一次性批量发行多个不同类型的的数字资产，支持在一次转账过程中转多个不同类型的数字资产。|
 | 7   | 交易组| 把两笔及以上的交易放在一个组里一次性发送。|
-| 8   | 代扣手续费| 将代扣交易和正常用户的交易打包进一个交易组中，代扣交易使用代扣地址签名，用于链上手续费扣除。|
-
-## 2. 目录索引
-1. BTYNFT目录： BTY平行链的场景（公链）,该子目录下包含BTY主链节点，以及BTY平行链环境搭建，平行链上合约部署和运行的JAVA样例。
-2. ConsortumNFT目录: 联盟链的场景，该子目录下包含4节点联盟链的搭建， 联盟链上合约部署和运行的JAVA样例。
-3. SoloNFT目录：单节点验证场景，用于本地快速验证调试，该子目录下包含SOLO节点的环境搭建，以下合约部署和JAVA调用样例。  
-4. YCCNFT目录： YCC平行链的场景（公链）,该子目录下包含YCC主链节点，以及YCC平行链节点搭建，YCC平行链上合约部署和运行的JAVA样例。
+| 8   | 代扣手续费| 将代扣交易和正常用户的交易打包进一个交易组中，代扣交易使用代扣地址签名，用于链上手续费扣除。适用于BTY和YCC主链+平行链的场景|
 
 
-## 3. 各区块链环境搭建及使用说明  
+## 2. 各区块链环境搭建及使用说明  
 根据需求部署所需的区块链环境：  
-1. BTY主链和平行链：    
+1. BTY环境， BTYNFT目录： BTY平行链的场景（公链）,该子目录下包含BTY主链节点，以及BTY平行链环境搭建，平行链上合约部署和运行的JAVA样例。  
 [[BTY主链和平行链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/NFTDemo/readme.md)   
-2. 搭建Solo单节点开发环境：  
-[[Solo单节点]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/SoloNFT/singleSolo/readme.md)  
-[[Solo单节点+平行链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/SoloNFT/soloAndPara/readme.md)   
-3. 搭建联盟链环境：  
+2. 联盟链环境，ConsortumNFT目录: 联盟链的场景，该子目录下包含4节点联盟链的搭建， 联盟链上合约部署和运行的JAVA样例。 
 [[联盟链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/ConsortiumNFT/readme.md) 
-4. 搭建YCC主链和平行链环境  
-[[YCC主链和平行链环境]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/YCCNFT/readme.md)   
+3. YCC环境， YCCNFT目录： YCC平行链的场景（公链）,该子目录下包含YCC主链节点，以及YCC平行链节点搭建，YCC平行链上合约部署和运行的JAVA样例。    
+[[YCC主链和平行链环境]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/YCCNFT/readme.md)  
+4. Solo单节点开发环境， SoloNFT目录：单节点验证场景，用于本地快速验证调试，该子目录下包含SOLO节点的环境搭建，以下合约部署和JAVA调用样例。
+[[Solo单节点]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/SoloNFT/singleSolo/readme.md)  
+[[Solo单节点+平行链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/SoloNFT/soloAndPara/readme.md)    
 
-## 4. 通过SDK或jsonrpc接口数据上链     
-1. [[JAVA-SDK环境]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/JAVA-SDK开发环境.md)  
-2. [[GO-SDK环境]](https://github.com/33cn/chain33-sdk-go)  
-
-## 5. NFT合约开发部署
-参考： [[NFT合约开发部署]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/NFT合约开发部署.md)  
