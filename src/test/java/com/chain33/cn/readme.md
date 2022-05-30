@@ -34,7 +34,7 @@
 ## 2. 各区块链环境搭建及使用说明  
 根据需求部署所需的区块链环境：  
 1. BTY环境， BTYNFT目录： BTY平行链的场景（公链）,该子目录下包含BTY主链节点，以及BTY平行链环境搭建，平行链上合约部署和运行的JAVA样例。   
-[[BTY主链和平行链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/BTYDemo/readme.md)   
+[[BTY主链和平行链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/BTYNFT/readme.md)   
 2. 联盟链环境，ConsortumNFT目录: 联盟链的场景，该子目录下包含4节点联盟链的搭建， 联盟链上合约部署和运行的JAVA样例。   
 [[联盟链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/ConsortiumNFT/readme.md)   
 3. YCC环境， YCCNFT目录： YCC平行链的场景（公链）,该子目录下包含YCC主链节点，以及YCC平行链节点搭建，YCC平行链上合约部署和运行的JAVA样例。      
