@@ -42,11 +42,11 @@ Chain33本身不是一条区块链，它是一套区块链底层的开发框架,
 - PARA共识插件：平行链共识插件，平行链不是独立存在的，它依附于主链（上述的5种都是主链），利用主链的共识算法来保证其安全性，同时平行链实现交易执行分片，主链下可以挂很多不同名称的平行链，每条平行链只负责自己独立的业务。 平行链条数的增加不会影响主链的性能，也不会影响其它平行链的性能。 比如EVM合约运行在平行链上， 而主链上只对这些交易的原始信息做共识和存证，所以主链只做存证而不用做具体的计算性能就可以很高。   
 	
 ### 各区块链使用说明  
-基于用户自己的需求，选择相应的区块链加入：  
+*基于用户自己的需求，选择相应的区块链加入：*
 - Ticket共识公链： 相关说明在/NFTDemo/src/test/java/com/chain33/cn/BTYNFT目录下  [[Ticket共识主链+平行链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/BTYNFT/readme.md)  
 特点： 运行时间长，从2018年主网上线运行超过4年时间; 共识节点可自由加入和退出,节点分布广且数量多，目前全网超过1700多个节点; 平均3秒左右一个区块，主网TPS300以上;  目前采用BTC格式地址。  
 - POS33共识公链：相关说明在 /NFTDemo/src/test/java/com/chain33/cn/YCCNFT目录下 [[POS33共识主链+平行链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/YCCNFT/readme.md)  
-特点： 2022年5月主网上线; 共识节点由抽签投票方式产生,共识节点相对集中但性能高;  平均1秒左右一个区块,主网TPS10000以上; 目前已经全面兼容以太坊地址,可以使用web3.js库和区块链交互，支持小狐狸钱包连接。  
+特点： 2022年5月主网上线; 共识节点由抽签投票方式产生,共识节点相对集中但性能高;  平均1秒左右一个区块,主网TPS10000以上; ***目前已经全面兼容以太坊地址,可以使用web3.js库和区块链交互，支持小狐狸钱包连接。  ***
 - QBFT共识联盟链：相关说明在/NFTDemo/src/test/java/com/chain33/cn/ConsortiumNFT目录下 [[QBFT共识联盟链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/ConsortiumNFT/readme.md)  
 特点： 适用于联盟链的场景, 比如某家单位或一些单位组成的联盟, 对数据有一定隐私性的要求, 节点的加入和退出需要管理员审核的场景;  支持完全私有化独立部署; 平均每1秒左右一个区块; TPS2万左右; 通过工信部信通院的功能和性能测评。  
 - Solo共识单节点： 相关说明在/NFTDemo/src/test/java/com/chain33/cn/SoloNFT目录下  [[SOLO共识单节点]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/SoloNFT/soloAndPara/readme.md)     
