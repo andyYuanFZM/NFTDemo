@@ -1,36 +1,104 @@
-# chain33联盟链部署
-## chain33联盟链采用了QBFT共识机制，支持拜占庭容错，节点数要满足N>3f，所以至少3f+1个节点
+# QBFT共识（联盟链）+平行链使用说明
 
-## 1.联盟链环境部署  
+## 目录
+	- [说明](#说明)
+	- [联盟链环境部署 ](#联盟链环境部署)
+	- [平行链节点部署](#平行链节点部署)
+	- [NFT合约概述](#NFT合约概述)
+	- [通过SDK实现合约部署调用](#通过SDK实现合约部署调用) 
+	- [应用对接注意事项](#应用对接注意事项) 
+	
+## 说明
+联盟主链采用了QBFT共识机制，支持拜占庭容错，节点根据权重（可配置）对区块进行投票确认, 节点数要满足N>3f，所以至少3f+1个节点（f代表错误节点,f最小取1,所以联盟链最少需要4个节点）。 
+主链+平行链交易流程：  
+- 交易在链下完成构造和签名,交易构造时需要在交易体中带上对应平行链的名称。   
+- 签好名的交易通过平行链的jsonrpc接口发往平行链节点。   
+- 平行链通过它和主链之间的grpc连接,将交易转发到主链节点,由主链打包区块共识后存入主链账本。   
+- 主链区块生成后,平行链实时拉取新产生的区块,过滤出属于本平行链的交易（根据平行链名称）, 送入虚拟机执行后并写入平行链账本。  
+下面介绍4节点联盟主链和平行链节点的部署，智能合约部署和调用方法。  
++ 注： 支持在同一台服务器上同时部署联盟主链节点和平行链节点（只要保证两者的jsonrpc和grpc端口不冲突即可）   
+
+## 联盟链环境部署  
 [[联盟链环境部署]](https://chain.33.cn/document/274)   
 
-## 2. 熟悉了解NFT合约开发部署  
-参考： [[NFT合约开发部署]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/NFT合约开发部署.md)  
+## 平行链节点部署 
+主链部署完，才可以部署平行链。  
+- 下载平行链，解压压缩包，并进入目录(支持在任意一台主链节点上部署，也支持单独服务器部署)
+```  
+wget https://bty33.oss-cn-shanghai.aliyuncs.com/chain33Dev/parachain/linux/chain33_para_linux_0670237.tar.gz  
+tar -zxvf chain33_para_linux_0670237.tar.gz  
+cd chain33_para_linux_0670237  
+```  
 
-## 3. 通过JAVA-SDK进行数据上链     
-[[JAVA-SDK环境部署]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/JAVA-SDK开发环境.md)  
+- 目录下包含以下三个文件  
+```  
+chain33                -- chain33节点程序
+chain33-cli            -- chain33节点命令行工具
+chain33.para.toml      -- chain33平行链配置文件
+```  
 
-其它SDK或接口方式：  
-[[GO-SDK]](https://github.com/33cn/chain33-sdk-go)   
-[[JSON-RPC: TODO 待补充]]()   
-[[Web3: TODO 待补充]]()   
+- 修改配置文件（chain33.para.toml），修改以下几个配置项：  
+```  
+ #平行链名称，用来唯一标识一条平行链，  可将mbaas修改成自己想要的名称（只支持英文字符），最后一个 . 号不能省略
+Title="user.p.mbaas."
+ #主链的grpc地址，可以临时使用官方的grpc连接：ParaRemoteGrpcClient="jiedian2.bityuan.com,cloud.bityuan.com"
+ # 主链的grpc地址,填写主链的IP:8802
+ParaRemoteGrpcClient="localhost:8802"
+ #指示从主链哪个高度开始同步，刚部署完的联盟链区块高度是1，所以平行链也可以配置成1
+startHeight=1
+```  
 
-## 4. 运行demo程序  
-1. 调用 BlockChainTest.java中的createAccount方法，生成一对地址和私钥
-2. 修改本目录下的ERC721Test文件，将上一步生成的内容，分别填充到以下几个参数中，注意私钥即资产，要隐私存放，而地址是可以公开的
+- 启动平行链
+```  
+nohup ./chain33 -f chain33.para.toml >> para.out&  
+```  
+
+- 检查平行链和主链的同步状态(进程启动后，等待一会后再执行)  
+```
+ #返回true代表同步完成
+./chain33-cli --rpc_laddr="http://localhost:8901" para is_sync
+ # 当前平行链最大区块高度
+./chain33-cli --rpc_laddr="http://localhost:8901" block last_header
+```  
+
+## NFT合约概述
+NFT合约运行在平行链的EVM虚拟机中, EVM虚拟机运行solidity语言编写和编译的智能合约。 
+Solidity语言更多信息, 请参阅  [[Solidity中文官方文档]](https://learnblockchain.cn/docs/solidity/)  
+下文介绍ERC1155和ERC721两类合约最简单的使用，包括两种合约的基本介绍， 合约的编写和编译等。    [[NFT合约开发编译]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/NFT合约开发编译.md)  
+
+## 通过SDK实现合约部署调用     
+和公链每一笔交易都要收取手续费不一样, 联盟链默认是把手续费功能关闭的，用户在交易上链时不需要考虑地址下有没有燃料的问题，交易用私钥签名后就可以直接上链了。  
+### JAVA-SDK
+#### JAVA-SDK部署
+适用于应用平台使用JAVA开发的情况,提供SDK对应的jar包，SDK里包含了公私钥生成,合约部署方法,合约调用方法,交易签名,交易查询,区块链信息查询等方法。  [[JAVA-SDK]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/JAVA-SDK开发环境.md)  
+
+#### 运行JAVA Demo程序  
+1. 调用 [[BlockChainTest.java]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/BlockChain.java)  中的createAccount方法，生成地址和私钥
+2. 修改ConsortiumNFT/ERC1155Test.java文件，将上一步生成的内容，分别填充到以下几个参数中，注意私钥即资产，要隐私存放，而地址是可以公开的
 ```  
 // 管理员地址和私钥
 String managerAddress = "";
 String managerPrivateKey = "";
-```   
-3. 修改ERC721Test两个文件中以下两个参数
 ```  
-// 改成自己节点所在服务器IP地址
+3. 修改ConsortiumNFT/ERC1155Test.java中以下两个参数
+```  
+// 改成自己平行链所在服务器IP地址
 String ip = "";
-// 改成自己联盟链服务端口，对应的是配置文件里的jrpcBindAddr配置项，默认的是8801。 注意：如果远程访问，防火墙要放行此端口
-int port = 8801;
+// 改成自己平行链服务端口，对应的是配置文件里的jrpcBindAddr配置项，默认的是8901。 注意：如果远程访问，防火墙要放行此端口
+int port = 8901;
 ```   
-4. 运行测试程序  
+4. 修改平行链名称
+```  
+// 改成平行链环境配置中,自己设置的平行链名称
+String paraName = "user.p.mbaas.";
+```   
+5. 运行测试程序  
+
+### GO-SDK  
+适用于应用平台使用Golang开发的情况,SDK里包含了公私钥生成,合约部署方法,合约调用方法,交易签名,交易查询,区块链信息查询等方法。 [[GO-SDK]](https://github.com/33cn/chain33-sdk-go)   
+
+### web3.js
+暂不支持
 
 ## 5. 应用对接注意事项   
 交易上链失败的情况：  

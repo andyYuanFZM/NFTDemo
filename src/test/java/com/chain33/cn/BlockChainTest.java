@@ -126,6 +126,19 @@ public class BlockChainTest {
     }
 	
 	/**
+	 * 生成YCC用户私钥和地址(以太坊形式，地址以0x开头)
+	 */
+	@Test
+	public void createAccountYCC() {
+		Account account = new Account();
+		AccountInfo accountInfo = account.newAccountLocalYCC();
+		// 生成用户私钥
+		System.out.println(accountInfo.getPrivateKey());
+		// 生成用户地址
+		System.out.println(accountInfo.getAddress());
+    }
+	
+	/**
 	 * @description 验证地址的合法性
 	 */
 	@Test

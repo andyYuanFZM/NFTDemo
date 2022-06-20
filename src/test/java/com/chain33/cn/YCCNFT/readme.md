@@ -15,12 +15,22 @@ ycc                -- ycc节点程序
 ycc-cli            -- ycc节点命令行工具
 ycc.toml           -- ycc配置文件
 ```  
-- 1.4 启动主链程序
+- 1.4 修改配置  
+```  
+[rpc]  
+ # 默认只限制localhost访问，想要不限制，可以去掉localhost,只保留:9902  
+grpcBindAddr="localhost:9902"
+ # 默认只限制localhost访问，想要不限制，可以去掉localhost,只保留:9901  
+jrpcBindAddr="localhost:9901"  
+ # 白名单IP，如果不限制，把127.0.0.1改成 *  
+whitelist=["127.0.0.1"] 
+```  
+- 1.5 启动主链程序
 ```  
 nohup ./ycc -f ycc.toml >> ycc.out&
 ```  
 
-- 1.5 检查主链的同步状态(进程启动后，等待一会后执行) 
+- 1.6 检查主链的同步状态(进程启动后，等待一会后执行) 
 ```  
 #  主要看返回信息中自己节点的height信息， 和主链最大高度一致代表同步成功。 
  ./ycc-cli net peer info  
