@@ -131,7 +131,7 @@ contract newERC1155 is ERC1155 {
 ![Image text](https://github.com/andyYuanFZM/NFTDemo/blob/main/src/test/java/com/chain33/cn/resource/compilation.png)  
 如上图，从IDE中编译获取到ABI和bytecode（红框中按钮点一下就可以将信息拷贝出来, bytecode里包含了很多信息,只需要复制其下"object"里的信息），为下一步合约部署上链做准备。  
 
-- ABI含义：   合约接口说明，即应用程序二进制接口（Application Binary Interface，ABI）。可以理解为合约的接口说明。当合约被编译后，其对应的ABI也会一起生成，它类似于程序的接口说明文档，描述了属性和方法签名相关信息，包括字段名称、字段类型、方法名称、参数名称、参数类型、方法返回值等。
+- ABI含义：   合约接口说明，即应用程序二进制接口（Application Binary Interface，ABI）。可以理解为合约的接口说明。当合约被编译后，其对应的ABI也会一起生成，它类似于程序的接口说明文档，描述了属性和方法签名相关信息，包括字段名称、字段类型、方法名称、参数名称、参数类型、方法返回值等。  
 | 参数| 描述                              | 
 | ------- | -------------------------------------- | 
 | name   | 函数名称| 
