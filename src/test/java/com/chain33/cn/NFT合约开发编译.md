@@ -142,9 +142,9 @@ ABI含义：   合约接口说明，即应用程序二进制接口（Application
 | inputs   | 数组，描述参数的名称和类型| 
 | name   | 参数名称| 
 | type   | 参数类型| 
-| outputs   | 和inputs相同，如果没有返回值，缺省是一个空数组| 
-如果需要了解更多合约接口说明（ABI）相关信息，请参见[[API官方介绍]](https://docs.soliditylang.org/en/v0.4.24/abi-spec.html?spm=a2c4g.11186623.2.13.1c865bd2fv0E7S)
+| outputs   | 和inputs相同，如果没有返回值，缺省是一个空数组|   
 
+- 如果需要了解更多合约接口说明（ABI）相关信息，请参见[[API官方介绍]](https://docs.soliditylang.org/en/v0.4.24/abi-spec.html?spm=a2c4g.11186623.2.13.1c865bd2fv0E7S)  
 bytecode含义： 字节码，即合约代码的编译结果，也是合约部署时使用的关键数据，通过SDK可以将合约字节码部署到目标的生产链上使用。  
 
 ### 合约参考例子
