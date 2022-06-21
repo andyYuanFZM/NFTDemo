@@ -48,7 +48,7 @@ Chain33本身不是一条区块链，它是一套区块链底层的开发框架,
 
 - POS33共识公链（YCC公链）：相关说明在 /NFTDemo/src/test/java/com/chain33/cn/YCCNFT目录下 [[POS33共识主链+平行链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/YCCNFT/readme.md)  
 特点： 2022年5月主网上线; 共识节点由抽签投票方式产生,共识节点相对集中但性能高;  平均1秒左右一个区块,主网TPS10000以上  
-***兼容以太坊地址,可以使用web3.js库和区块链交互，支持同小狐狸钱包对接。 但目前主网运行时长比BTY要短  ***  
+**兼容以太坊地址,可以使用web3.js库和区块链交互，支持同小狐狸钱包对接。 但目前主网运行时长比BTY要短**  
 
 - QBFT共识联盟链：相关说明在/NFTDemo/src/test/java/com/chain33/cn/ConsortiumNFT目录下 [[QBFT共识联盟链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/ConsortiumNFT/readme.md)  
 特点： 适用于联盟链的场景, 比如某家单位或一些单位组成的联盟, 对数据有一定隐私性的要求, 节点的加入和退出需要管理员审核的场景;  支持完全私有化独立部署; 平均每1秒左右一个区块; TPS2万左右; 通过工信部信通院的功能和性能测评。  
