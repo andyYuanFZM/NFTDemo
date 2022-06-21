@@ -43,16 +43,16 @@ Chain33本身不是一条区块链，它是一套区块链底层的开发框架,
 	
 ### 各区块链使用说明  
 *基于用户自己的需求，选择相应的区块链加入：*
-- Ticket共识公链（BTY公链）： 相关说明在/NFTDemo/src/test/java/com/chain33/cn/BTYNFT目录下  [[Ticket共识主链+平行链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/BTYNFT/readme.md)  
+- Ticket共识公链（BTY公链）+ 平行链场景： 相关说明在/NFTDemo/src/test/java/com/chain33/cn/BTYNFT目录下  [[Ticket共识主链+平行链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/BTYNFT/readme.md)  
 特点： 运行时间长，从2018年主网上线运行超过4年时间; 共识节点可自由加入和退出,节点分布广且数量多，目前全网超过1700多个节点; 平均3秒左右一个区块，主网TPS300以上;  目前采用BTC格式地址。  
 
-- POS33共识公链（YCC公链）：相关说明在 /NFTDemo/src/test/java/com/chain33/cn/YCCNFT目录下 [[POS33共识主链+平行链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/YCCNFT/readme.md)  
+- POS33共识公链（YCC公链））+ 平行链场景：相关说明在 /NFTDemo/src/test/java/com/chain33/cn/YCCNFT目录下 [[POS33共识主链+平行链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/YCCNFT/readme.md)  
 特点： 2022年5月主网上线; 共识节点由抽签投票方式产生,共识节点相对集中但性能高;  平均1秒左右一个区块,主网TPS10000以上  
 **兼容以太坊地址,可以使用web3.js库和区块链交互，支持同小狐狸钱包对接。 但目前主网运行时长比BTY要短**  
 
-- QBFT共识联盟链：相关说明在/NFTDemo/src/test/java/com/chain33/cn/ConsortiumNFT目录下 [[QBFT共识联盟链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/ConsortiumNFT/readme.md)  
+- QBFT共识联盟链）+ 平行链场景：相关说明在/NFTDemo/src/test/java/com/chain33/cn/ConsortiumNFT目录下 [[QBFT共识联盟链]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/ConsortiumNFT/readme.md)  
 特点： 适用于联盟链的场景, 比如某家单位或一些单位组成的联盟, 对数据有一定隐私性的要求, 节点的加入和退出需要管理员审核的场景;  支持完全私有化独立部署; 平均每1秒左右一个区块; TPS2万左右; 通过工信部信通院的功能和性能测评。  
 
-- Solo共识单节点： 相关说明在/NFTDemo/src/test/java/com/chain33/cn/SoloNFT目录下  [[SOLO共识单节点]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/SoloNFT/readme.md)     
+- Solo共识单节点）+ 平行链场景： 相关说明在/NFTDemo/src/test/java/com/chain33/cn/SoloNFT目录下  [[SOLO共识单节点]](https://github.com/andyYuanFZM/NFTDemo/tree/main/src/test/java/com/chain33/cn/SoloNFT/readme.md)     
 特点： 公链和联盟链部署成本相对高，使用SOLO可以快速部署，快速开发验证，支持在windows和linux上部署。  
 
